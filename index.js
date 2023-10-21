@@ -1,17 +1,14 @@
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config();
 
 // Express
 const express = require('express');
 const app = express();
 const cors = require('cors');
 
-// Get the port from environment variable or use a default (e.g., 8000)
 const port = process.env.PORT || 8000;
 
-// Database Connection
 const db_connection = require('./config/mongoose');
 
-// Allowing CORS requests - Remember to change the allowed origin
 app.use(cors());
 
 // Parsers
@@ -20,9 +17,8 @@ app.use(express.json({ extended: true }));
 
 // Socket connection
 const pollResultServer = require('http').Server(app);
-const pollResultSocket = require('./config/poll-results-socket').poll_result_socket(
-  pollResultServer
-);
+const pollResultSocket =
+  require('./config/poll-results-socket').poll_result_socket(pollResultServer);
 const socketPort = 4050;
 
 pollResultServer.listen(socketPort, (err) => {
@@ -51,6 +47,6 @@ db_connection().then(() => {
       return;
     }
 
-    console.log('Server started successfully');
+    console.log('Server started successfully on Port:', port);
   });
 });

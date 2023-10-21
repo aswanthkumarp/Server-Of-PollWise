@@ -38,7 +38,7 @@ module.exports.createSession = async function (req, res) {
     userData = await userData.toJSON();
     user = { id: userData._id, name: userData.name, email: userData.email };
     const token = jwt.sign({ ...user, iat: Date.now() }, `${env.JWT_key}`, {
-      expiresIn: 3600000,
+      expiresIn: 3600000, //milliseconds
      
     });
  
