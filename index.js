@@ -12,8 +12,8 @@ const db_connection = require('./config/mongoose');
 app.use(cors());
 
 // Parsers
-app.use(express.urlencoded());
-app.use(express.json({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Socket connection
 const pollResultServer = require('http').Server(app);
@@ -35,7 +35,7 @@ const jwt = require('./config/passport-jwt-strategy');
 
 db_connection().then(() => {
   // Routes
-  app.use('/', require('./routes'));
+  app.use('/', require('./routes'));   
 
   // Initialize Passport
   app.use(passport.initialize());

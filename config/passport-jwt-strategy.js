@@ -16,7 +16,7 @@ passport.use(
   new JWTStrategy(opts, async function (req, jwtPayload, done) {
     // Identifies the user
     let user = await User.findById(jwtPayload.id);
-    // console.log(111,user)
+    
     // If identified
     if (user) {
       const loggedUser = {
