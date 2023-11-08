@@ -1,7 +1,7 @@
 module.exports.poll_result_socket = function (socketServer) {
   let io = require('socket.io')(socketServer, {
     cors: {
-      origin: 'http://localhost:5173',
+      origin: 'https://pollwise.netlify.app',
       methods: ['GET', 'POST'],
     },
   });
