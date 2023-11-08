@@ -25,7 +25,7 @@ passport.use(
         email: user.email,
       };
       req.user = loggedUser;
-      // console.log(222,req.user)
+     
       done(null, loggedUser);
     } else {
       // User not Identified and null is passed as argument
